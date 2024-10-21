@@ -1,0 +1,46 @@
+{% extends 'core/base.html'%}
+
+{% block title %}
+Sign up
+{% endblock%}
+
+{%block heading%}
+<div class = "flex justify-evenly">
+<div class = "px-10 py-12 bg-gray-200 rounded-xl mt-6 mb-12 w-1/2" >
+    <h1 class = " mb-12 text-center text-xl font-semibold">Sign Up</h1>
+    <hr size="2" width="80%">
+    <form method = "post" action = ".">
+        {% csrf_token %}
+        {{form.non_field_error}}
+        <div>
+            <label class = "inline-block my-4 font-semibold">Username</label><br>
+        {{ form.username}}
+        </div>
+        <div>
+            <label class = "inline-block my-4 font-semibold">Email</label><br>
+        {{ form.email}}
+        </div>
+        
+        <div>
+            <label class = "inline-block my-4 font-semibold">Password</label><br>
+        {{ form.password1}}
+        </div>
+
+        <div>
+            <label class = "inline-block my-4 font-semibold">Confirm Password</label><br>
+        {{ form.password2}}
+        </div>
+
+        <input type="submit" value = "Submit" class = "bg-teal-600 text-l rounded-xl my-6 px-5 py-2 text-white font-semibold hover:bg-teal-800 ">
+
+        {% if form.errors or form.non_field_error%}
+            <div class = "p=5">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+            </div>
+        {% endif %}
+</div>
+</div>
+
+{% endblock %}

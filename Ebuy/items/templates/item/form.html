@@ -1,0 +1,26 @@
+{% extends "core/base.html"%}
+
+{% block title %}
+Add Item
+{%  endblock %}
+
+{% block heading%}
+<div>
+    <h1 class = "text-center font-semibold text-xl m-6"> Add New Item </h1>    
+</div>
+<form method = "post" action = "." enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.non_field_error}}
+    {{form.as_p}}<br>
+<input type="submit" value = "Submit" class = "bg-teal-600 text-l rounded-xl my-6 px-5 py-2 text-white font-semibold hover:bg-teal-800 ">
+
+    
+            {% if form.errors or form.non_field_error%}
+                <div class = "p=5">
+                    {% for field in form %}
+                        {{ field.errors }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+</form>
+{% endblock %}
